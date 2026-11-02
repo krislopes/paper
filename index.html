@@ -65,7 +65,13 @@
   .hero .ph { aspect-ratio: 4 / 5; box-shadow: 0 18px 40px rgba(43,45,74,.18); }
   .badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
   .badges li { background: #fff; border-radius: 30px; padding: 6px 14px; font-size: 14px; font-weight: 700; color: var(--indigo); box-shadow: 0 3px 10px rgba(43,45,74,.1); }
-  @media (min-width: 860px) { .hero-grid { grid-template-columns: 1.1fr .9fr; } .hero .cta-wrap { text-align: left; } }
+  @media (min-width: 860px) {
+    .hero-grid { grid-template-columns: 1.1fr .9fr; grid-template-areas: "top img" "bottom img"; row-gap: 0; }
+    .hero-top { grid-area: top; align-self: end; }
+    .hero-img { grid-area: img; }
+    .hero-bottom { grid-area: bottom; align-self: start; }
+    .hero .cta-wrap { text-align: left; }
+  }
 
   /* cards */
   .cards { display: grid; gap: 22px; margin-top: 32px; }
@@ -143,6 +149,79 @@
   footer { background: var(--texto); color: #d6d8e8; font-size: 13px; padding: 34px 0; text-align: center; }
   footer p { margin: 0 0 10px; }
   footer a { color: #fff; }
+
+  .lead-short { display: none; }
+
+  /* celular: a maior parte das visitas vem do anúncio no celular */
+  @media (max-width: 759px) {
+    body { font-size: 16px; }
+    section { padding: 40px 0; }
+    h1 { font-size: 27px; margin-bottom: 14px; }
+    h2 { font-size: 24px; margin-bottom: 12px; }
+    h3 { font-size: 18px; }
+    .lead { font-size: 16px; }
+
+    .hero { padding: 20px 0 32px; }
+    .hero .brand { font-size: 12px; margin-bottom: 10px; }
+    .hero-grid { gap: 16px; }
+    .hero .ph { aspect-ratio: 16 / 11; border-radius: 18px; }
+    .lead-full { display: none; }
+    .lead-short { display: block; margin-bottom: 0; }
+    .hero-img img { object-position: center 35%; }
+
+    .cta { display: block; width: 100%; padding: 17px 18px; font-size: 18px; }
+    .cta-wrap { margin-top: 20px; }
+    .cta-note { font-size: 13px; }
+
+    /* cards do que recebe: foto ao lado do texto */
+    .cards { gap: 14px; margin-top: 20px; }
+    .card { flex-direction: row; border-radius: 18px; }
+    .card .ph { flex: 0 0 112px; aspect-ratio: auto; min-height: 112px; }
+    .card .body { padding: 14px 16px; }
+    .card h3 { font-size: 17px; margin-bottom: 4px; }
+    .card p { font-size: 14px; line-height: 1.45; }
+
+    .checks li { padding: 10px 0 10px 38px; font-size: 15px; }
+    .checks li::before { width: 26px; height: 26px; top: 9px; font-size: 14px; }
+
+    .who { gap: 12px; margin-top: 18px; }
+    .who .item { padding: 16px 18px; border-radius: 16px; }
+    .who .item b { font-size: 17px; }
+    .who .item p { font-size: 14.5px; }
+
+    /* presentes em 2 colunas */
+    .gift-grid { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+    .gift { padding: 14px; border-radius: 14px; }
+    .gift .num { width: 28px; height: 28px; font-size: 14px; margin-bottom: 6px; }
+    .gift b { font-size: 15px; line-height: 1.25; }
+    .gift p { font-size: 13px; line-height: 1.4; }
+
+    /* bônus: capa ao lado do texto */
+    .bonus-card { grid-template-columns: 112px 1fr; border-radius: 18px; }
+    .bonus-card .cover { padding: 14px 10px; align-items: center; }
+    .bonus-card .cover img { width: 100%; }
+    .bonus-card .body { padding: 14px 16px 16px; }
+    .bonus-card h3 { font-size: 16px; margin-bottom: 6px; }
+    .bonus-card p { font-size: 13.5px; line-height: 1.45; margin: 0; }
+    .tag { font-size: 12px; padding: 2px 10px; margin-bottom: 6px; }
+
+    .why-grid { gap: 18px; }
+    .why .ph { aspect-ratio: 16 / 10; border-radius: 18px; }
+    .why h2 { font-size: 24px; }
+
+    .offer-box { padding: 22px 16px; border-radius: 22px; }
+    .offer-box .kit { max-width: 200px; }
+    .offer-box li { font-size: 15px; padding: 7px 0 7px 28px; }
+    .guarantee { padding: 22px 18px; border-radius: 22px; }
+    .seal { width: 112px; height: 112px; box-shadow: 0 0 0 6px #fff3c4, 0 10px 22px rgba(245,185,21,.35); }
+    .seal b { font-size: 40px; }
+    .seal span { font-size: 11px; }
+
+    summary { padding: 15px 46px 15px 16px; font-size: 15px; }
+    summary::after { right: 16px; }
+    details p { padding: 0 16px 15px; font-size: 15px; }
+
+  }
 </style>
 </head>
 <body>
@@ -150,17 +229,20 @@
 <!-- 1 · TOPO -->
 <header class="hero">
   <div class="wrap hero-grid">
-    <div>
+    <div class="hero-top">
       <div class="brand">Papelería Creativa</div>
       <h1>Crea la papelería de la fiesta de tu hijo <span>en una tarde</span>, aunque nunca hayas diseñado nada</h1>
-      <p class="lead">Más de 200 plantillas editables en Canva para cajitas dulceras, letras 3D, invitaciones y etiquetas. Cambias el nombre, los colores y el tema desde el celular o la computadora, imprimes en casa y la mesa dulce queda lista. Úsalas en tus fiestas o para vender y ganar dinero extra.</p>
+    </div>
+    <div class="ph hero-img" data-label="img/hero.jpg · mesa dulce de cumpleaños">
+      <img src="img/hero.jpg" alt="Mesa dulce de cumpleaños infantil con cajitas, letras 3D y etiquetas personalizadas" onerror="this.remove()">
+    </div>
+    <div class="hero-bottom">
+      <p class="lead lead-full">Más de 200 plantillas editables en Canva para cajitas dulceras, letras 3D, invitaciones y etiquetas. Cambias el nombre, los colores y el tema desde el celular o la computadora, imprimes en casa y la mesa dulce queda lista. Úsalas en tus fiestas o para vender y ganar dinero extra.</p>
+      <p class="lead lead-short">Más de 200 plantillas editables en Canva: cambias nombre y colores desde el celular, imprimes en casa y la mesa dulce queda lista. Para tu fiesta o para vender.</p>
       <div class="cta-wrap">
         <a class="cta js-checkout" href="#oferta">QUIERO MI KIT POR US$ 6,90</a>
-        <div class="cta-note">Pago único · Acceso inmediato por e-mail · Garantía de 7 días</div>
+        <div class="cta-note">Pago único · Acceso inmediato · Garantía de 7 días</div>
       </div>
-    </div>
-    <div class="ph" data-label="img/hero.jpg · mesa dulce de cumpleaños">
-      <img src="img/hero.jpg" alt="Mesa dulce de cumpleaños infantil con cajitas, letras 3D y etiquetas personalizadas" onerror="this.remove()">
     </div>
   </div>
 </header>
