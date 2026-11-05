@@ -5,16 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kit de Papelería Creativa · +200 plantillas editables en Canva</title>
 <meta name="description" content="Crea la papelería de la fiesta de tu hijo en una tarde: cajitas dulceras, letras 3D, invitaciones y etiquetas editables en Canva. US$ 6,90, acceso inmediato.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!-- Fontes e foto do topo carregam primeiro para a página abrir rápido no celular -->
+<link rel="preload" href="fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="img/hero.webp" imagesrcset="img/hero-480.webp 480w, img/hero.webp 800w" imagesizes="(min-width: 860px) 460px, 100vw" fetchpriority="high">
 <!-- Pixel do Meta: Mulher de Poder - Papelaria criativa (1776455843411399).
-     A página envia PageView e ViewContent; InitiateCheckout e Purchase são enviados pela Hotmart. -->
+     A página envia PageView e ViewContent; InitiateCheckout e Purchase são enviados pela Hotmart.
+     O script do pixel só baixa depois que a página termina de carregar, para não atrasar a foto do topo;
+     os eventos ficam na fila e são enviados assim que ele chega. -->
 <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];f.addEventListener('load',function(){
+  t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)})}(window,
   document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '1776455843411399');
   fbq('track', 'PageView');
@@ -26,8 +30,10 @@
   const CHECKOUT = "https://pay.hotmart.com/D108278182Q?checkoutMode=10";
 </script>
 <style>
+  @font-face { font-family: "Fredoka"; font-style: normal; font-weight: 300 700; font-display: swap; src: url(fonts/fredoka-latin.woff2) format("woff2"); }
+  @font-face { font-family: "Nunito"; font-style: normal; font-weight: 200 1000; font-display: swap; src: url(fonts/nunito-latin.woff2) format("woff2"); }
   :root {
-    --coral: #ef5a48; --coral-claro: #ff8f7e; --indigo: #3b3f9e; --turquesa-claro: #e2f6f8;
+    --coral: #ef5a48; --coral-texto: #c73a28; --coral-claro: #ff8f7e; --indigo: #3b3f9e; --turquesa-claro: #e2f6f8;
     --turquesa: #17b3c1; --amarillo: #ffc93c; --texto: #2b2d4a; --suave: #4d5170;
     --fondo: #fffdf6; --blanco: #ffffff;
   }
@@ -39,7 +45,7 @@
   h1 { font-size: clamp(30px, 6vw, 50px); color: var(--indigo); }
   h1 span { color: var(--coral); }
   h2 { font-size: clamp(26px, 4.5vw, 38px); color: var(--indigo); text-align: center; }
-  h3 { font-size: 21px; color: var(--coral); }
+  h3 { font-size: 21px; color: var(--coral-texto); }
   p { margin: 0 0 14px; }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
   section { padding: 64px 0; }
@@ -229,6 +235,7 @@
 </style>
 </head>
 <body>
+<main>
 
 <!-- 1 · TOPO -->
 <header class="hero">
@@ -237,8 +244,8 @@
       <div class="brand">Papelería Creativa</div>
       <h1>Crea la papelería de la fiesta de tu hijo <span>en una tarde</span>, aunque nunca hayas diseñado nada</h1>
     </div>
-    <div class="ph hero-img" data-label="img/hero.jpg · mesa dulce de cumpleaños">
-      <img src="img/hero.jpg" alt="Mesa dulce de cumpleaños infantil con cajitas, letras 3D y etiquetas personalizadas" onerror="this.remove()">
+    <div class="ph hero-img" data-label="img/hero.webp · mesa dulce de cumpleaños">
+      <img src="img/hero.webp" srcset="img/hero-480.webp 480w, img/hero.webp 800w" sizes="(min-width: 860px) 460px, 100vw" width="800" height="1000" fetchpriority="high" alt="Mesa dulce de cumpleaños infantil con cajitas, letras 3D y etiquetas personalizadas" onerror="this.remove()">
     </div>
     <div class="hero-bottom">
       <p class="lead lead-full">Más de 200 plantillas editables en Canva para cajitas dulceras, letras 3D, invitaciones y etiquetas. Cambias el nombre, los colores y el tema desde el celular o la computadora, imprimes en casa y la mesa dulce queda lista. Úsalas en tus fiestas o para vender y ganar dinero extra.</p>
@@ -258,15 +265,15 @@
     <h2>Esto es lo que recibes al comprar hoy</h2>
     <div class="cards c3">
       <article class="card">
-        <div class="ph" data-label="img/cajitas.jpg"><img src="img/cajitas.jpg" alt="Cajitas dulceras impresas y armadas" onerror="this.remove()"></div>
+        <div class="ph" data-label="img/cajitas.webp"><img src="img/cajitas.webp" width="700" height="700" loading="lazy" decoding="async" alt="Cajitas dulceras impresas y armadas" onerror="this.remove()"></div>
         <div class="body"><h3>Plantillas de cajitas dulceras</h3><p>Modelos listos para editar en Canva que cambias de nombre, color y tema en minutos. Imprimes, recortas y armas las cajitas para la mesa dulce y los recuerdos de los invitados.</p></div>
       </article>
       <article class="card">
-        <div class="ph" data-label="img/letras.jpg"><img src="img/letras.jpg" alt="Nombre en letras 3D de papel" onerror="this.remove()"></div>
+        <div class="ph" data-label="img/letras.webp"><img src="img/letras.webp" width="700" height="700" loading="lazy" decoding="async" alt="Nombre en letras 3D de papel" onerror="this.remove()"></div>
         <div class="body"><h3>Abecedario 3D + Números</h3><p>Todas las letras y los números en 3D para armar el nombre y la edad del cumpleañero y decorar la mesa principal, el pastel o la entrada de la fiesta.</p></div>
       </article>
       <article class="card">
-        <div class="ph" data-label="img/papeles.jpg"><img src="img/papeles.jpg" alt="Papeles digitales y cliparts" onerror="this.remove()"></div>
+        <div class="ph" data-label="img/papeles.webp"><img src="img/papeles.webp" width="700" height="700" loading="lazy" decoding="async" alt="Papeles digitales y cliparts" onerror="this.remove()"></div>
         <div class="body"><h3>Papeles digitales y cliparts</h3><p>Fondos, texturas y dibujos que combinan con cada tema, para que todas las piezas de la fiesta salgan con la misma cara.</p></div>
       </article>
     </div>
@@ -330,7 +337,7 @@
     <h2>Y además, 2 bonos para sacarle provecho al kit desde la primera semana</h2>
     <div class="cards c2">
       <article class="bonus-card">
-        <div class="cover"><img src="img/bono1.jpg" alt="Portada del Calendario 2027 de las Fechas que Más Venden"></div>
+        <div class="cover"><img src="img/bono1.webp" width="400" height="566" loading="lazy" decoding="async" alt="Portada del Calendario 2027 de las Fechas que Más Venden"></div>
         <div class="body">
           <span class="tag">BONO 1</span>
           <h3>Calendario 2027 de las Fechas que Más Venden</h3>
@@ -338,7 +345,7 @@
         </div>
       </article>
       <article class="bonus-card">
-        <div class="cover"><img src="img/bono2.jpg" alt="Portada de Tu Primera Fiesta en una Tarde"></div>
+        <div class="cover"><img src="img/bono2.webp" width="400" height="566" loading="lazy" decoding="async" alt="Portada de Tu Primera Fiesta en una Tarde"></div>
         <div class="body">
           <span class="tag">BONO 2</span>
           <h3>Tu Primera Fiesta en una Tarde</h3>
@@ -353,7 +360,7 @@
 <!-- 7 · POR QUE VALE A PENA -->
 <section class="why">
   <div class="wrap why-grid">
-    <div class="ph" data-label="img/vender.jpg · preparando pedidos"><img src="img/vender.jpg" alt="Preparando cajitas personalizadas para vender" onerror="this.remove()"></div>
+    <div class="ph" data-label="img/vender.webp · preparando pedidos"><img src="img/vender.webp" width="800" height="600" loading="lazy" decoding="async" alt="Preparando cajitas personalizadas para vender" onerror="this.remove()"></div>
     <div>
       <h2 style="text-align:left">¿Por qué vale la pena hacer tu propia papelería?</h2>
       <p>Cada mes hay cumpleaños en la familia, en el salón de clases de tus hijos y entre tus amigos, y en todos alguien quiere una mesa dulce bonita sin gastar de más. Quien sabe preparar la papelería personalizada ahorra en sus propias fiestas y además tiene algo para ofrecer a todas esas personas.</p>
@@ -368,7 +375,7 @@
     <h2>Al comprar hoy te llevas todo esto</h2>
     <div class="offer-grid" style="margin-top:28px">
       <div class="offer-box">
-        <div class="kit"><img src="img/kit.jpg" alt="Kit Papelería Fiestas Infantiles"></div>
+        <div class="kit"><img src="img/kit.webp" width="600" height="600" loading="lazy" decoding="async" alt="Kit Papelería Fiestas Infantiles"></div>
         <ul>
           <li>Plantillas de cajitas dulceras</li>
           <li>Abecedario 3D + Números</li>
@@ -411,6 +418,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="wrap">
